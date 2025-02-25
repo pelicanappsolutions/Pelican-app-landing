@@ -1,8 +1,9 @@
 import Image from 'next/image';
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-white text-gray-900 flex flex-col items-center justify-center px-6">
+    <main className="min-h-screen flex flex-col items-center justify-center px-6">
       {/* Company Logo */}
       <div className="mb-4">
         <Image
@@ -26,16 +27,16 @@ export default function Home() {
       </p>
 
       {/* Contact Us Button */}
-      <a
-        href="mailto:contact@pelicanappsolutions.com"
+      <Link
+        href="/contact"
         className="bg-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:bg-blue-700 transition transform hover:scale-105 mb-4"
       >
         Contact Us
-      </a>
+      </Link>
 
       {/* Target App Button */}
       <a
-        href="https://yourappurl.com"
+        href="https://targets.pelicanappsolutions.com/"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:bg-blue-700 transition transform hover:scale-105"
