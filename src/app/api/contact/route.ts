@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
-  const { name, email, message } = await req.json();
+  const { name, email, phone, workType, message } = await req.json();
 
-  if (!name || !email || !message) {
+  if (!name || !email || !workType || !message) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       from: `"Pelican App Solutions" <your-email@gmail.com>`,
       to: "your-email@gmail.com",
       subject: "New Contact Form Submission",
-      text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nWork Type: ${workType}\nMessage:\n${message}`,
     });
     return NextResponse.json({ message: "Email sent successfully" }, { status: 200 });
   } catch (error) {

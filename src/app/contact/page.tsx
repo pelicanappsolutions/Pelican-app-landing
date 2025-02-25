@@ -2,10 +2,16 @@
 import { useState } from "react";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    workType: "Short-term",
+    message: "",
+  });
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -21,7 +27,7 @@ export default function ContactPage() {
 
     if (response.ok) {
       setStatus("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", workType: "Short-term", message: "" });
     } else {
       setStatus("Failed to send message. Try again.");
     }
@@ -52,6 +58,29 @@ export default function ContactPage() {
             required
             className="w-full p-2 border border-gray-300 rounded mt-1"
           />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Phone Number (Optional)</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Work Type</label>
+          <select
+            name="workType"
+            value={formData.workType}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+          >
+            <option>Short-term</option>
+            <option>Long-term</option>
+            <option>Internship</option>
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Message</label>
